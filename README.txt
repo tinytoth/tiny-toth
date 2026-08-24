@@ -1,24 +1,8 @@
-TINY TOTH WHITELIST WEBSITE
+Tiny Toth whitelist website
 
-Connected to the user's Google Apps Script Web App.
+This version uses the local Tiny Toth GIF assets in assets/nfts.
+Expected files:
+- tiny_toth_showcase.gif
+- tiny_toth_showcase_01.gif ... _05.gif
 
-Form fields:
-- X username
-- public wallet
-- comment link
-- quote tweet link
-- follow checkbox
-- like checkbox
-- comment checkbox
-- quote tweet checkbox
-
-The frontend posts URL-encoded data to the Apps Script endpoint using a
-hidden iframe, avoiding browser CORS restrictions.
-
-Google Sheet columns created by Apps Script:
-Timestamp | X Username | Wallet | Comment Link | Quote Link |
-Follow | Like | Comment | Quote | Status
-
-Only public wallet addresses should be collected. Never ask for seed phrases/private keys.
-
-If you change the Apps Script deployment URL, update SUBMIT_ENDPOINT in script.js.
+The Google Apps Script endpoint remains configured in script.js.

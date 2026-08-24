@@ -2,15 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tiny Toth — Early Access</title><link rel="stylesheet" href="styles.css">
+<title>Tiny Toth — Early Access</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="glow g1"></div><div class="glow g2"></div>
-<header><a class="logo" href="#">TINY TOTH</a><nav><a href="#about">about</a><a href="#mint">mint</a><a href="#join">join</a></nav><a class="xbtn" href="https://x.com/TinyTothNFT" target="_blank">follow on x ↗</a></header>
+<header><a class="logo" href="#">TINY TOTH</a><nav><a href="#about">about</a><a href="#mint">mint</a><a href="#join">join</a></nav><a class="xbtn" href="https://x.com/TinyTothNFT" target="_blank" rel="noreferrer">follow on x ↗</a></header>
 <main>
 <section class="hero">
-<div><div class="eyebrow">● BUILT ON INK</div><h1>something tiny<br><i>is coming.</i></h1><p>Tiny Toth is a character collection built from traits, colors and unexpected combinations. Get in early before the mint.</p><div class="actions"><a class="btn primary" href="#join">join the whitelist</a><a class="btn" href="#mint">mint phases</a></div></div>
-<div class="stage"><div class="ring"></div><div class="card"><div class="mystery"><div class="head"></div><div class="body"></div><div class="foot f1"></div><div class="foot f2"></div></div><small>TINY TOTH / ???</small></div><b class="chip c1">GTD</b><b class="chip c2">EARLY</b><b class="chip c3">INK</b></div>
+  <div class="hero-copy">
+    <div class="eyebrow">● BUILT ON INK</div>
+    <h1>something tiny<br><i>is coming.</i></h1>
+    <p>Tiny Toth is a character collection built from traits, colors and unexpected combinations. Get in early before the mint.</p>
+    <div class="actions"><a class="btn primary" href="#join">join the whitelist</a><a class="btn" href="#mint">mint phases</a></div>
+  </div>
+  <div class="stage" id="nftStage" aria-label="Tiny Toth preview">
+    <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+    <div class="nft-card main-card" id="mainCard">
+      <div class="card-media"><img id="mainGif" src="assets/nfts/tiny_toth_showcase.gif" alt="Tiny Toth animated preview"></div>
+      <div class="card-shine"></div><small>TINY TOTH / ???</small>
+    </div>
+    <div class="mini-card mini-1"><img src="assets/nfts/tiny_toth_showcase_02.gif" alt="Tiny Toth preview" loading="lazy"></div>
+    <div class="mini-card mini-2"><img src="assets/nfts/tiny_toth_showcase_04.gif" alt="Tiny Toth preview" loading="lazy"></div>
+    <b class="chip c1">GTD</b><b class="chip c2">EARLY</b><b class="chip c3">INK</b>
+  </div>
 </section>
 <div class="ticker">TINY TOTH　•　NFT　•　INK　•　GTD　•　FCFS　•　EARLY ACCESS</div>
 <section id="about"><div class="kicker">01 / THE IDEA</div><div class="cols"><h2>small characters.<br><span>big variations.</span></h2><div class="copy"><p>Tiny Toth is built around modular traits, so every character can feel different without losing the identity of the collection.</p><p class="muted">The reveal stays mysterious until the right moment. Early supporters get the first look.</p></div></div></section>
@@ -19,7 +34,7 @@
 <article><em>02 / fast</em><h3>FCFS</h3><p>First come, first served access after the GTD window.</p><small>while supply lasts</small></article>
 <article><em>03 / open</em><h3>PUBLIC</h3><p>Public mint opens after the early phases.</p><small>details coming soon</small></article>
 </div></section>
-<section id="join"><div class="join"><div class="joincopy"><div class="kicker">03 / GET IN EARLY</div><h2>join the<br><span>early list.</span></h2><p>Submit your public wallet and X handle. No seed phrase, no private key, no wallet connection required.</p><a href="https://x.com/TinyTothNFT" target="_blank">𝕏　follow @TinyTothNFT</a><a href="https://x.com/inkonchain" target="_blank">↗　discover Ink</a></div>
+<section id="join"><div class="join"><div class="joincopy"><div class="kicker">03 / GET IN EARLY</div><h2>join the<br><span>early list.</span></h2><p>Submit your public wallet and X handle. No seed phrase, no private key, no wallet connection required.</p><a href="https://x.com/TinyTothNFT" target="_blank" rel="noreferrer">𝕏　follow @TinyTothNFT</a><a href="https://x.com/inkonchain" target="_blank" rel="noreferrer">↗　discover Ink</a></div>
 <form id="wl">
 <label>X username<input id="user" name="username" placeholder="@yourhandle" required></label>
 <label>Public wallet<input id="wallet" name="wallet" placeholder="0x..." required></label>
@@ -30,8 +45,7 @@
 <label class="check"><input id="comment" name="comment" type="checkbox" required> I commented on the announcement.</label>
 <label class="check"><input id="quote" name="quote" type="checkbox" required> I quote tweeted the announcement.</label>
 <button class="btn primary" type="submit">submit for early access</button>
-<div id="status"></div>
-<small class="warning">Only submit a public wallet address. Never share a seed phrase or private key.</small>
+<div id="status"></div><small class="warning">Only submit a public wallet address. Never share a seed phrase or private key.</small>
 </form></div></section>
 </main><footer><b>TINY TOTH</b><span>built for the early ones.</span></footer>
 <iframe name="tinyTothSubmitFrame" id="tinyTothSubmitFrame" style="display:none"></iframe>
