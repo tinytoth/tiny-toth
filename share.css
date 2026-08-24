@@ -1,51 +1,53 @@
-
-.tt-share-card {
-  margin-top: 4px;
-  padding: 20px;
-  border: 1px solid #ffffff18;
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 100% 0%, #907cff18, transparent 45%),
-    #111119;
-  box-shadow: 0 18px 50px #0008;
-  animation: ttShareIn .35s ease-out;
+.tiny-toth-share {
+  margin-top: 28px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.tt-share-title {
-  color: #f5f3ef;
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: .04em;
+.tiny-toth-share .share-inner {
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(30,28,48,0.95),
+    rgba(18,17,27,0.95)
+  );
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
 }
 
-.tt-share-copy {
-  margin-top: 7px;
-  color: #8f8e9b;
-  font-size: 11px;
+.tiny-toth-share strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.tiny-toth-share p {
+  margin: 0 0 18px;
+  color: #9c9aaa;
+  font-size: 14px;
   line-height: 1.6;
 }
 
-.tt-share-btn {
+.tiny-toth-share .share-x-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 14px;
-  min-height: 42px;
-  padding: 0 16px;
-  border-radius: 11px;
-  background: #f5f3ef;
-  color: #08080c;
-  font-size: 11px;
-  font-weight: 900;
-  transition: transform .18s ease, opacity .18s ease;
+  min-width: 120px;
+  padding: 13px 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #08080b;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.tt-share-btn:hover {
+.tiny-toth-share .share-x-btn:hover {
   transform: translateY(-2px);
-  opacity: .9;
-}
-
-@keyframes ttShareIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  opacity: 0.9;
 }
