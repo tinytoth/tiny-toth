@@ -1,0 +1,51 @@
+
+.tt-share-card {
+  margin-top: 4px;
+  padding: 20px;
+  border: 1px solid #ffffff18;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 100% 0%, #907cff18, transparent 45%),
+    #111119;
+  box-shadow: 0 18px 50px #0008;
+  animation: ttShareIn .35s ease-out;
+}
+
+.tt-share-title {
+  color: #f5f3ef;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+
+.tt-share-copy {
+  margin-top: 7px;
+  color: #8f8e9b;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.tt-share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 11px;
+  background: #f5f3ef;
+  color: #08080c;
+  font-size: 11px;
+  font-weight: 900;
+  transition: transform .18s ease, opacity .18s ease;
+}
+
+.tt-share-btn:hover {
+  transform: translateY(-2px);
+  opacity: .9;
+}
+
+@keyframes ttShareIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

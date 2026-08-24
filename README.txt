@@ -1,8 +1,9 @@
-Tiny Toth whitelist website
+Tiny Toth Early Access Share
 
-This version uses the local Tiny Toth GIF assets in assets/nfts.
-Expected files:
-- tiny_toth_showcase.gif
-- tiny_toth_showcase_01.gif ... _05.gif
+Add share.js and share.css to the existing Tiny Toth website.
 
-The Google Apps Script endpoint remains configured in script.js.
+share.js watches the existing #status element. When the existing whitelist
+submission reports success, it adds an "early access secured" card with a
+one-click X share button.
+
+It does not replace or modify the existing Google Apps Script submission logic.
