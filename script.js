@@ -4,14 +4,59 @@ const form = document.getElementById("wl");
 const status = document.getElementById("status");
 const submitButton = form?.querySelector('button[type="submit"]');
 
+function showShare(username) {
+  // Remove any old share sections so only one can exist
+  document.querySelectorAll(
+    "#tinyTothShare, .tiny-toth-share, .share-section, .share-card"
+  ).forEach(el => el.remove());
+
+  const share = document.createElement("div");
+  share.id = "tinyTothShare";
+  share.className = "tiny-toth-share";
+
+  const tweetText =
+`just joined the Tiny Toth early access list.
+
+tiny characters. big variations.
+built on @inkonchain
+
+waiting for the reveal.`;
+
+  const xUrl =
+    "https://x.com/intent/tweet?text=" +
+    encodeURIComponent(tweetText);
+
+  share.innerHTML = `
+    <div class="share-inner">
+      <strong>early access secured</strong>
+      <p>share your spot on x</p>
+      <a class="share-x-btn"
+         href="${xUrl}"
+         target="_blank"
+         rel="noopener noreferrer">
+         X SHARE ON X
+      </a>
+    </div>
+  `;
+
+  form.parentElement.appendChild(share);
+}
+
 if (form && status) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const wallet = document.getElementById("wallet")?.value.trim() || "";
-    const username = document.getElementById("user")?.value.trim() || "";
-    const commentLink = document.getElementById("comment_link")?.value.trim() || "";
-    const quoteLink = document.getElementById("quote_link")?.value.trim() || "";
+    const wallet =
+      document.getElementById("wallet")?.value.trim() || "";
+
+    const username =
+      document.getElementById("user")?.value.trim() || "";
+
+    const commentLink =
+      document.getElementById("comment_link")?.value.trim() || "";
+
+    const quoteLink =
+      document.getElementById("quote_link")?.value.trim() || "";
 
     if (!username) {
       status.textContent = "Please enter your X username.";
@@ -24,18 +69,23 @@ if (form && status) {
     }
 
     if (!commentLink || !quoteLink) {
-      status.textContent = "Please add your comment and quote tweet links.";
+      status.textContent =
+        "Please add your comment and quote tweet links.";
       return;
     }
 
-    if (!["follow", "like", "comment", "quote"].every(id => document.getElementById(id)?.checked)) {
-      status.textContent = "Please complete all required campaign steps.";
+    const requiredSteps = ["follow", "like", "comment", "quote"];
+
+    if (!requiredSteps.every(id =>
+      document.getElementById(id)?.checked
+    )) {
+      status.textContent =
+        "Please complete all required campaign steps.";
       return;
     }
 
-    // Submit as a normal HTML form to a hidden iframe.
-    // This avoids browser CORS/preflight problems with Google Apps Script.
     let frame = document.getElementById("tinyTothSubmitFrame");
+
     if (!frame) {
       frame = document.createElement("iframe");
       frame.name = "tinyTothSubmitFrame";
@@ -53,22 +103,42 @@ if (form && status) {
     form.target = "tinyTothSubmitFrame";
 
     status.textContent = "Submitting...";
-    if (submitButton) submitButton.disabled = true;
 
-    // Native form submission sends application/x-www-form-urlencoded,
-    // which is exactly what the Apps Script doPost expects.
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
+
     HTMLFormElement.prototype.submit.call(form);
 
-    // Apps Script may redirect inside the iframe, so don't try to read its response.
-    // The submission has been sent successfully once the browser accepts the POST.
     setTimeout(() => {
-      status.textContent = "Submitted. Your early access spot is recorded.";
-      form.reset();
-      if (submitButton) submitButton.disabled = false;
+      status.textContent = "Early access secured.";
 
-      if (oldAction === null) form.removeAttribute("action"); else form.setAttribute("action", oldAction);
-      if (oldMethod === null) form.removeAttribute("method"); else form.setAttribute("method", oldMethod);
-      if (oldTarget === null) form.removeAttribute("target"); else form.setAttribute("target", oldTarget);
-    }, 900);
+      form.reset();
+
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
+
+      if (oldAction === null) {
+        form.removeAttribute("action");
+      } else {
+        form.setAttribute("action", oldAction);
+      }
+
+      if (oldMethod === null) {
+        form.removeAttribute("method");
+      } else {
+        form.setAttribute("method", oldMethod);
+      }
+
+      if (oldTarget === null) {
+        form.removeAttribute("target");
+      } else {
+        form.setAttribute("target", oldTarget);
+      }
+
+      showShare(username);
+
+    }, 1200);
   });
 }
