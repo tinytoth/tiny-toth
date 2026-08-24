@@ -1,9 +1,10 @@
-Tiny Toth Early Access Share
+Tiny Toth website update
 
-Add share.js and share.css to the existing Tiny Toth website.
+Includes:
+- GIF hero
+- Google Apps Script whitelist submission via hidden iframe POST
+- Early Access success card
+- One-click X share button
 
-share.js watches the existing #status element. When the existing whitelist
-submission reports success, it adds an "early access secured" card with a
-one-click X share button.
-
-It does not replace or modify the existing Google Apps Script submission logic.
+The Google Apps Script endpoint is already configured in script.js.
+Do not ask users for seed phrases or private keys.
