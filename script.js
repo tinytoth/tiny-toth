@@ -4,13 +4,13 @@ const form = document.getElementById("wl");
 const status = document.getElementById("status");
 const submitButton = form?.querySelector('button[type="submit"]');
 
-function showShare(username) {
-  // Remove any old share sections so only one can exist
+function showShare() {
   document.querySelectorAll(
     "#tinyTothShare, .tiny-toth-share, .share-section, .share-card"
   ).forEach(el => el.remove());
 
   const share = document.createElement("div");
+
   share.id = "tinyTothShare";
   share.className = "tiny-toth-share";
 
@@ -29,7 +29,7 @@ waiting for the reveal.`;
   share.innerHTML = `
     <div class="share-inner">
       <strong>early access secured</strong>
-      <p>share your spot on x</p>
+      <p>share your spot on x and let the Tiny Toth journey begin.</p>
       <a class="share-x-btn"
          href="${xUrl}"
          target="_blank"
@@ -43,7 +43,7 @@ waiting for the reveal.`;
 }
 
 if (form && status) {
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const wallet =
@@ -57,6 +57,18 @@ if (form && status) {
 
     const quoteLink =
       document.getElementById("quote_link")?.value.trim() || "";
+
+    const follow =
+      document.getElementById("follow")?.checked || false;
+
+    const like =
+      document.getElementById("like")?.checked || false;
+
+    const comment =
+      document.getElementById("comment")?.checked || false;
+
+    const quote =
+      document.getElementById("quote")?.checked || false;
 
     if (!username) {
       status.textContent = "Please enter your X username.";
@@ -74,33 +86,22 @@ if (form && status) {
       return;
     }
 
-    const requiredSteps = ["follow", "like", "comment", "quote"];
-
-    if (!requiredSteps.every(id =>
-      document.getElementById(id)?.checked
-    )) {
+    if (!follow || !like || !comment || !quote) {
       status.textContent =
         "Please complete all required campaign steps.";
       return;
     }
 
-    let frame = document.getElementById("tinyTothSubmitFrame");
+    const body = new URLSearchParams();
 
-    if (!frame) {
-      frame = document.createElement("iframe");
-      frame.name = "tinyTothSubmitFrame";
-      frame.id = "tinyTothSubmitFrame";
-      frame.style.display = "none";
-      document.body.appendChild(frame);
-    }
-
-    const oldAction = form.getAttribute("action");
-    const oldMethod = form.getAttribute("method");
-    const oldTarget = form.getAttribute("target");
-
-    form.action = SUBMIT_ENDPOINT;
-    form.method = "POST";
-    form.target = "tinyTothSubmitFrame";
+    body.append("username", username);
+    body.append("wallet", wallet);
+    body.append("comment_link", commentLink);
+    body.append("quote_link", quoteLink);
+    body.append("follow", "true");
+    body.append("like", "true");
+    body.append("comment", "true");
+    body.append("quote", "true");
 
     status.textContent = "Submitting...";
 
@@ -108,37 +109,32 @@ if (form && status) {
       submitButton.disabled = true;
     }
 
-    HTMLFormElement.prototype.submit.call(form);
+    try {
+      await fetch(SUBMIT_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+        body: body.toString()
+      });
 
-    setTimeout(() => {
       status.textContent = "Early access secured.";
 
       form.reset();
 
+      showShare();
+
+    } catch (error) {
+      console.error(error);
+
+      status.textContent =
+        "Submission failed. Please try again.";
+
+    } finally {
       if (submitButton) {
         submitButton.disabled = false;
       }
-
-      if (oldAction === null) {
-        form.removeAttribute("action");
-      } else {
-        form.setAttribute("action", oldAction);
-      }
-
-      if (oldMethod === null) {
-        form.removeAttribute("method");
-      } else {
-        form.setAttribute("method", oldMethod);
-      }
-
-      if (oldTarget === null) {
-        form.removeAttribute("target");
-      } else {
-        form.setAttribute("target", oldTarget);
-      }
-
-      showShare(username);
-
-    }, 1200);
+    }
   });
 }
