@@ -73,11 +73,16 @@ waiting for the reveal.`;
     </a>
   `;
 
-  share.style.gridColumn = "1 / -1";
+  const warning = form.querySelector(".warning");
+
 share.style.width = "100%";
 share.style.boxSizing = "border-box";
+share.style.gridColumn = "1 / -1";
 
-form.appendChild(share);
+if (warning) {
+  warning.insertAdjacentElement("afterend", share);
+} else {
+  form.appendChild(share);
 }
 
 if (form && status) {
