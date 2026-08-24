@@ -12,7 +12,15 @@ function showShare() {
   const share = document.createElement("div");
 
   share.id = "tinyTothShare";
-  share.className = "tiny-toth-share";
+
+  share.style.marginTop = "28px";
+  share.style.width = "100%";
+  share.style.boxSizing = "border-box";
+  share.style.padding = "24px";
+  share.style.border = "1px solid rgba(255,255,255,0.10)";
+  share.style.borderRadius = "20px";
+  share.style.background = "linear-gradient(135deg, rgba(30,28,48,0.95), rgba(18,17,27,0.95))";
+  share.style.boxShadow = "0 20px 60px rgba(0,0,0,0.25)";
 
   const tweetText =
 `just joined the Tiny Toth early access list.
@@ -27,16 +35,42 @@ waiting for the reveal.`;
     encodeURIComponent(tweetText);
 
   share.innerHTML = `
-    <div class="share-inner">
-      <strong>early access secured</strong>
-      <p>share your spot on x and let the Tiny Toth journey begin.</p>
-      <a class="share-x-btn"
-         href="${xUrl}"
-         target="_blank"
-         rel="noopener noreferrer">
-         X SHARE ON X
-      </a>
-    </div>
+    <strong style="
+      display:block;
+      margin-bottom:8px;
+      color:#fff;
+      font-size:18px;
+      font-weight:700;
+    ">
+      early access secured
+    </strong>
+
+    <p style="
+      margin:0 0 18px;
+      color:#9c9aaa;
+      font-size:14px;
+      line-height:1.6;
+    ">
+      share your spot on x and let the Tiny Toth journey begin.
+    </p>
+
+    <a href="${xUrl}"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-flex;
+         align-items:center;
+         justify-content:center;
+         padding:13px 20px;
+         border-radius:12px;
+         background:#fff;
+         color:#08080b;
+         text-decoration:none;
+         font-size:13px;
+         font-weight:800;
+       ">
+      X SHARE ON X
+    </a>
   `;
 
   form.parentElement.appendChild(share);
