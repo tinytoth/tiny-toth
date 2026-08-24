@@ -73,7 +73,11 @@ waiting for the reveal.`;
     </a>
   `;
 
-  submitButton.insertAdjacentElement("afterend", share);
+  share.style.gridColumn = "1 / -1";
+share.style.width = "100%";
+share.style.boxSizing = "border-box";
+
+form.appendChild(share);
 }
 
 if (form && status) {
