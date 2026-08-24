@@ -73,7 +73,7 @@ waiting for the reveal.`;
     </a>
   `;
 
-  form.parentElement.appendChild(share);
+  submitButton.insertAdjacentElement("afterend", share);
 }
 
 if (form && status) {
