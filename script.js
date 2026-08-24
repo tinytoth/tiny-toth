@@ -43,7 +43,7 @@ waiting for the reveal.`;
 }
 
 if (form && status) {
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const wallet =
@@ -92,16 +92,23 @@ if (form && status) {
       return;
     }
 
-    const body = new URLSearchParams();
+    let iframe = document.getElementById("tinyTothSubmitFrame");
 
-    body.append("username", username);
-    body.append("wallet", wallet);
-    body.append("comment_link", commentLink);
-    body.append("quote_link", quoteLink);
-    body.append("follow", "true");
-    body.append("like", "true");
-    body.append("comment", "true");
-    body.append("quote", "true");
+    if (!iframe) {
+      iframe = document.createElement("iframe");
+      iframe.id = "tinyTothSubmitFrame";
+      iframe.name = "tinyTothSubmitFrame";
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
+    }
+
+    const oldAction = form.getAttribute("action");
+    const oldMethod = form.getAttribute("method");
+    const oldTarget = form.getAttribute("target");
+
+    form.action = SUBMIT_ENDPOINT;
+    form.method = "POST";
+    form.target = "tinyTothSubmitFrame";
 
     status.textContent = "Submitting...";
 
@@ -109,32 +116,37 @@ if (form && status) {
       submitButton.disabled = true;
     }
 
-    try {
-      await fetch(SUBMIT_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-        },
-        body: body.toString()
-      });
+    HTMLFormElement.prototype.submit.call(form);
 
+    setTimeout(() => {
       status.textContent = "Early access secured.";
 
       form.reset();
 
-      showShare();
-
-    } catch (error) {
-      console.error(error);
-
-      status.textContent =
-        "Submission failed. Please try again.";
-
-    } finally {
       if (submitButton) {
         submitButton.disabled = false;
       }
-    }
+
+      if (oldAction === null) {
+        form.removeAttribute("action");
+      } else {
+        form.setAttribute("action", oldAction);
+      }
+
+      if (oldMethod === null) {
+        form.removeAttribute("method");
+      } else {
+        form.setAttribute("method", oldMethod);
+      }
+
+      if (oldTarget === null) {
+        form.removeAttribute("target");
+      } else {
+        form.setAttribute("target", oldTarget);
+      }
+
+      showShare();
+
+    }, 1500);
   });
 }
