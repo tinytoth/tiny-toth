@@ -84,6 +84,7 @@ if (warning) {
 } else {
   form.appendChild(share);
 }
+}
 
 if (form && status) {
   form.addEventListener("submit", (e) => {
